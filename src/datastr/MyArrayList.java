@@ -1,5 +1,7 @@
 package datastr;
 
+import java.util.ArrayList;
+
 public class MyArrayList {
 
     private int[] list;
@@ -90,7 +92,7 @@ public class MyArrayList {
     }
 
     public void add(int element, int index) throws Exception {
-        if (index < 0 || index > counter){
+        if (index < 0 || index >= counter){
             throw new Exception("Incorect index");
         }
         if(isFull()){
@@ -106,4 +108,40 @@ public class MyArrayList {
         }
 
     }
+
+    public void remove(int index) throws Exception {
+        if (index < 0 || index >= counter){
+            throw new Exception("Incorrect index");
+        }
+        if (isEmpty()) throw new Exception("Empty list");
+
+        for (int i = index; i < counter-1; i++ ){
+            list[i] = list[i+1];
+        }
+
+        counter--;
+    }
+
+    public int getElementFromIndex(int index) throws Exception {
+        if (index < 0 || index >= counter){
+            throw new Exception("Incorrect index");
+        }
+        if (isEmpty()) throw new Exception("Empty list");
+        return list[index];
+    }
+
+    public ArrayList search(int element) throws Exception {
+        if (isEmpty()) throw new Exception("Empty list");
+        ArrayList indexes = new ArrayList();
+
+        for (int i = 0; i < counter; i++){
+            if(list[i] == element){
+                indexes.add(i);
+            }
+
+        }
+        return indexes;
+    }
+
+    
 }
