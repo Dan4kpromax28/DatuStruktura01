@@ -89,7 +89,21 @@ public class MyArrayList {
         list[counter++] = element; //counter++ pec pluso un ++counter pirms pluso
     }
 
-    public void add(int element, int index){
-        if (index <= counter)
+    public void add(int element, int index) throws Exception {
+        if (index < 0 || index > counter){
+            throw new Exception("Incorect index");
+        }
+        if(isFull()){
+            resize();
+        }
+        if(index == counter) add(element);
+        else {
+            for (int i = counter; i > index; i--){
+                list[i] = list[i-1];
+            }
+            list[index] = element;
+            counter++;
+        }
+
     }
 }
