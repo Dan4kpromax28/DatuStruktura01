@@ -157,8 +157,27 @@ public class MyArrayList {
             int indexFromSearchTemp = (int) indexes.get(i);
             int indexNeighboursTemp = indexFromSearchTemp+1;
             neighbours[i] = list[indexNeighboursTemp];
+            //
         }
         return neighbours;
 
+    }
+    public void print() throws Exception {
+        if (isEmpty()) throw new Exception("Empty list");
+        for (int i = 0; i< counter; i++){
+            System.out.println(list[i] + " ");
+        }
+    }
+
+    public void makeEmpty() throws Exception {
+        counter = 0;
+        size = LIST_DEFAULT_SIZE;
+        list = new int[size];
+        System.gc(); // garbage collector
+
+    }
+
+    public void bubbleSort(){
+        
     }
 }
