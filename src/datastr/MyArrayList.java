@@ -140,8 +140,25 @@ public class MyArrayList {
             }
 
         }
+        if(indexes.size() == 0) throw new Exception("Element is not found");
         return indexes;
     }
 
-    
+    public int[] getNeighbours(int element) throws Exception {
+        ArrayList indexes = search(element);
+
+        int neighboursSize = indexes.size();
+
+        if ((Integer) indexes.get(indexes.size()-1) == (counter -1))
+            neighboursSize--;
+
+        int[] neighbours = new int[neighboursSize];
+        for (int i = 0; i < neighboursSize; i++){
+            int indexFromSearchTemp = (int) indexes.get(i);
+            int indexNeighboursTemp = indexFromSearchTemp+1;
+            neighbours[i] = list[indexNeighboursTemp];
+        }
+        return neighbours;
+
+    }
 }
