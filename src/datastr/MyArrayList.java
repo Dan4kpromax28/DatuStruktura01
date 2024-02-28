@@ -177,7 +177,20 @@ public class MyArrayList {
 
     }
 
-    public void bubbleSort(){
-        
+    public void bubbleSort() throws Exception {
+        if (isEmpty()) throw new Exception("Empty list is not posible to sort it");
+
+        for (int i = 0; i < counter; i++){
+            for (int j = 0; j < counter; j++){
+                if (list[i] > list[j]){
+                    swap(i,j);
+                }
+            }
+        }
+    }
+    private void swap(int i, int j){
+        int temp = list[i];
+        list[i] = list[j];
+        list[j] = temp;
     }
 }
