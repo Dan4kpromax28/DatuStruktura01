@@ -75,7 +75,21 @@ public class MyArrayList {
         System.gc();
         //8. size nomainam uz newSize
         size = newSize;
+    }
+    //TODO
+    //1.funkcijas deklaracija
+    //2. parbaude isFull - tad resize
+    //3.ielikam jauna elementu ka pedeju saraksta
+    //4.palielinam counter
 
+    public void add(int element){
+        if(isFull()){
+            resize();
+        }
+        list[counter++] = element; //counter++ pec pluso un ++counter pirms pluso
+    }
 
+    public void add(int element, int index){
+        if (index <= counter)
     }
 }
