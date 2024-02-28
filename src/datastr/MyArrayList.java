@@ -41,4 +41,41 @@ public class MyArrayList {
     public int howManyElements(){
         return counter;
     }
+
+    //TODO
+    //1. funkcijas deklaracija
+    //2. ja bus ienakosais paramtrs, to japarbauda
+    //3. aretinat newSize
+    //4. izveidot listNew ar newSize izmeru
+    //5. veikt viena masivu kopesanu uz otro
+    //6.nomainam list referenci uz listNew
+    //7. izveidot Garbage Collector
+    //8. size nomainam uz newSize
+    private void resize(){
+        int newSize = (counter <= 100)? size*2 : (int) (size * 1.5);
+
+        /*
+        if(counter <= 100){
+            int newSize =  size * 2;
+        }
+        else {
+            int newSize = (int)(size * 1.5);
+        }
+
+         */
+        //4. izveidot listNew ar newSize izmeru
+        int[] listNew = new int[newSize];
+        //5. veikt viena masivu kopesanu uz otro
+        for (int i = 0; i < size; i++){
+            listNew[i] = list[i];
+        }
+        //6.nomainam list referenci uz listNew
+        list = listNew;
+        //7. izveidot Garbage Collector
+        System.gc();
+        //8. size nomainam uz newSize
+        size = newSize;
+
+
+    }
 }
