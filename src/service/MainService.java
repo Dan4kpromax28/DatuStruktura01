@@ -50,10 +50,16 @@ public class MainService {
             System.out.println(Arrays.toString(allStudents.getNeighbours(s1)));
 
             allStudents.print();
-            //allStudent.sort();
+            allStudents.bubbleSort();
+            allStudents.print();
+
+            allStudents.remove(1);
+            allStudents.print();
 
             allStudents.makeEmpty();
             allStudents.add(s1);
+            allStudents.print();
+
 
         } catch (Exception e) {
             System.out.println(e);

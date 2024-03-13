@@ -1,8 +1,8 @@
 package datastr.model;
 
-public class Students {
+public class Students implements Comparable<Students>{
 
-    //1. variables
+    //1. variales
     private long sId;
     private String name;
     private String surname;
@@ -52,6 +52,16 @@ public class Students {
     //4.toString
     public String toString() {
         return sId + ":" + name + " " + surname;
+    }
+
+    @Override
+    public int compareTo(Students o) {
+        if (surname.charAt(0) > getSurname().charAt(0)){
+            return 1;
+        } else if (surname.charAt(0) < getSurname().charAt(0)) {
+            return -1;
+        }
+        return 0;
     }
     //5. other functions
 }
