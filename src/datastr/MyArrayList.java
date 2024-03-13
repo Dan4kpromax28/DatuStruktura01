@@ -2,9 +2,9 @@ package datastr;
 
 import java.util.ArrayList;
 
-public class MyArrayList {
+public class MyArrayList<Ttype> {
 
-    private int[] list;
+    private Ttype[] list;
     private final int LIST_DEFAULT_SIZE = 10;//final ir constatnta
     private int size = LIST_DEFAULT_SIZE;
     private int counter = 0; // cik elementi ir
@@ -12,13 +12,13 @@ public class MyArrayList {
     //TODO
     //construktors
     public MyArrayList(){
-        list = new int[size];
+         list = (Ttype[]) new Object[size];
     }
     public MyArrayList(int inputSize){
         if(inputSize > 0) {
             size = inputSize;
         }
-        list = new int[size];
+        list = (Ttype[]) new Object[size];
     }
     //isEmpty
     public boolean isEmpty(){
@@ -66,7 +66,7 @@ public class MyArrayList {
 
          */
         //4. izveidot listNew ar newSize izmeru
-        int[] listNew = new int[newSize];
+        Ttype[] listNew = (Ttype[]) new Object[newSize];
         //5. veikt viena masivu kopesanu uz otro
         for (int i = 0; i < size; i++){
             listNew[i] = list[i];
@@ -84,14 +84,14 @@ public class MyArrayList {
     //3.ielikam jauna elementu ka pedeju saraksta
     //4.palielinam counter
 
-    public void add(int element){
+    public void add(Ttype element){
         if(isFull()){
             resize();
         }
         list[counter++] = element; //counter++ pec pluso un ++counter pirms pluso
     }
 
-    public void add(int element, int index) throws Exception {
+    public void add(Ttype element, int index) throws Exception {
         if (index < 0 || index >= counter){
             throw new Exception("Incorect index");
         }
@@ -122,7 +122,7 @@ public class MyArrayList {
         counter--;
     }
 
-    public int getElementFromIndex(int index) throws Exception {
+    public Ttype getElementFromIndex(int index) throws Exception {
         if (index < 0 || index >= counter){
             throw new Exception("Incorrect index");
         }
@@ -130,12 +130,12 @@ public class MyArrayList {
         return list[index];
     }
 
-    public ArrayList search(int element) throws Exception {
+    public ArrayList search(Ttype element) throws Exception {
         if (isEmpty()) throw new Exception("Empty list");
         ArrayList indexes = new ArrayList();
 
         for (int i = 0; i < counter; i++){
-            if(list[i] == element){
+            if(list[i].equals(element) ){
                 indexes.add(i);
             }
 
@@ -144,7 +144,7 @@ public class MyArrayList {
         return indexes;
     }
 
-    public int[] getNeighbours(int element) throws Exception {
+    public Ttype[] getNeighbours(Ttype element) throws Exception {
         ArrayList indexes = search(element);
 
         int neighboursSize = indexes.size();
@@ -152,7 +152,7 @@ public class MyArrayList {
         if ((Integer) indexes.get(indexes.size()-1) == (counter -1))
             neighboursSize--;
 
-        int[] neighbours = new int[neighboursSize];
+        Ttype[] neighbours = (Ttype[]) new Object[neighboursSize];
         for (int i = 0; i < neighboursSize; i++){
             int indexFromSearchTemp = (int) indexes.get(i);
             int indexNeighboursTemp = indexFromSearchTemp+1;
@@ -165,14 +165,15 @@ public class MyArrayList {
     public void print() throws Exception {
         if (isEmpty()) throw new Exception("Empty list");
         for (int i = 0; i< counter; i++){
-            System.out.println(list[i] + " ");
+            System.out.print(list[i] + " ");
         }
+        System.out.println();
     }
 
     public void makeEmpty() throws Exception {
         counter = 0;
         size = LIST_DEFAULT_SIZE;
-        list = new int[size];
+        list = (Ttype[]) new Object[size];
         System.gc(); // garbage collector
 
     }
@@ -182,14 +183,15 @@ public class MyArrayList {
 
         for (int i = 0; i < counter; i++){
             for (int j = 0; j < counter; j++){
-                if (list[i] > list[j]){
+               // if (list[i] > list[j]){
+                if(((Comparable)(list[i])).compareTo(list[j]) == 1) {
                     swap(i,j);
                 }
             }
         }
     }
     private void swap(int i, int j){
-        int temp = list[i];
+        Ttype temp = list[i];
         list[i] = list[j];
         list[j] = temp;
     }

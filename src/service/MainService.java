@@ -1,12 +1,13 @@
 package service;
 
 import datastr.MyArrayList;
+import datastr.model.Students;
 
 import java.util.Arrays;
 
 public class MainService {
     public static void main(String[] args) {
-        MyArrayList myList = new MyArrayList(3);
+        MyArrayList<Integer> myList = new MyArrayList<Integer>(3);
 
         myList.add(100);
         myList.add(200);
@@ -14,7 +15,7 @@ public class MainService {
 
         try{
             myList.print();
-            myList.add(1, 1000);
+            myList.add(10000, 1);
             myList.remove(0);
             myList.print();
             myList.add(200);
@@ -23,10 +24,42 @@ public class MainService {
             System.out.println(Arrays.toString(myList.getNeighbours((200))));
             myList.print();
             myList.bubbleSort();
-            
+            myList.print();
+
 
         } catch (Exception e){
             e.printStackTrace();
         }
+
+
+        MyArrayList<Students> allStudents = new MyArrayList<>();
+
+        Students s1 = new Students("Janiis", "Balika");
+        Students s2 = new Students("Kurts", "Sula");
+        Students s3 = new Students("Andzejs", "Kira");
+
+
+        allStudents.add(s1);
+        allStudents.add(s2);
+
+        try {
+            allStudents.add(s3,0);
+            allStudents.print();
+
+            System.out.println(allStudents.search(s1));
+            System.out.println(Arrays.toString(allStudents.getNeighbours(s1)));
+
+            allStudents.print();
+            //allStudent.sort();
+
+            allStudents.makeEmpty();
+            allStudents.add(s1);
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+
+
     }
 }
